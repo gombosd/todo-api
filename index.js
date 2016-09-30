@@ -27,20 +27,35 @@ var Todo = mongoose.model('Todo', {
 
 //add Todo
 app.post('/todos',function(req, res){
+	if(!req.body.title){
+		return res.json({
+			err: "title is required"
+		})
+	}
+
 	var todo = new Todo({
 		title: req.body.title
 	})
 
 	todo.save(function (err) {
 	  if (err) {
-	    return res.send(err);
+	    return res.json(err);
 	  } 
 
-	  res.send(todo)
+	  res.json(todo)
 	});
-
 });
 
+//list Todo
+app.get('/todos', function(req, res){
+	Todo.find({}, function(err, todos){
+		if(err){
+			return res.json(err)
+		}
+
+		res.json(todos)
+	})
+})
 
 app.listen(3000, function () {
   console.log('Listening on port 3000!');
