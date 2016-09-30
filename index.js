@@ -6,49 +6,42 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test');
 
-var Cat = mongoose.model('Cat', { name: String });
-
-// alap
+//express middleware
 app.use(bodyParser.json());
 
-
-app.get('/', function (req, res) {
-  Cat.find({}, function(err, cicak){
-  	if(err){
-  		return res.send(err);
-  	}
-
-  	res.send(cicak);
-
-  });
+//Todos model
+var Todo = mongoose.model('Todo', { 
+	title: {
+		type: String,
+		required: true
+	}, 
+	completed: {
+		type: Boolean,
+		default: false 
+	},
+	created_at: {
+		type: Date,
+		default: Date.now
+	} 
 });
 
-app.get('/:id', function (req, res) {
-  Cat.findById(req.params.id, function(err, cica){
-  	if(err){
-  		return res.send(err);
-  	}
+//add Todo
+app.post('/todos',function(req, res){
+	var todo = new Todo({
+		title: req.body.title
+	})
 
-  	res.send(cica);
-
-  });
-});
-
-app.post('/', function (req, res) {
-
-	var name = req.body.name
-
-	var kitty = new Cat({ name: name });
-	kitty.save(function (err) {
+	todo.save(function (err) {
 	  if (err) {
 	    return res.send(err);
 	  } 
 
-	  res.send(kitty)
+	  res.send(todo)
 	});
 
 });
 
+
 app.listen(3000, function () {
-  console.log('Example app listening on port 3000!');
+  console.log('Listening on port 3000!');
 });
