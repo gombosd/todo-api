@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 
 //mongoose
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/todo-api');
 
 //express middleware
 app.use(bodyParser.json());
