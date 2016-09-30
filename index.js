@@ -82,7 +82,7 @@ app.put('/todos/:todoId', function(req, res){
 	  		message: "már nem létezik a todo"
 	  	})
 	  }
-	  
+
 	  if(req.body.title){
 	  	todo.title = req.body.title;
 	  }
@@ -98,6 +98,26 @@ app.put('/todos/:todoId', function(req, res){
 	  	res.json(todo);
 	  });
 	});
+});
+
+//get Todo
+app.get('/todos/:todoId', function(req, res){
+	Todo.findById(req.params.todoId, function (err, todo) {
+	  if (err) {
+	  	return res.json(err);
+	  }
+	  if(todo===null){
+	  	return res.json({
+	  		message: "már nem létezik a todo"
+	  	});
+	  }
+	  res.json(todo);
+	});
+});
+
+//bad map
+app.get('/*',function(req, res){
+	res.send("Page not found")
 });
 
 //app listener
