@@ -42,7 +42,7 @@ app.post('/todos',function(req, res){
 	    return res.json(err);
 	  } 
 
-	  res.json(todo)
+	  res.json(todo);
 	});
 });
 
@@ -50,13 +50,27 @@ app.post('/todos',function(req, res){
 app.get('/todos', function(req, res){
 	Todo.find({}, function(err, todos){
 		if(err){
-			return res.json(err)
+			return res.json(err);
 		}
 
-		res.json(todos)
+		res.json(todos);
 	})
-})
+});
 
+//del Todo
+app.delete('/todos/:todoId', function(req, res){
+	Todo.remove({_id: req.params.todoId}, function(err){
+		if(err){
+			return res.json(err);
+		}
+		res.json({
+			message: "todo removed"
+		})
+
+	});
+});
+
+//app listener
 app.listen(3000, function () {
   console.log('Listening on port 3000!');
 });
