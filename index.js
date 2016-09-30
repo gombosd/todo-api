@@ -70,6 +70,36 @@ app.delete('/todos/:todoId', function(req, res){
 	});
 });
 
+//update Todo
+app.put('/todos/:todoId', function(req, res){
+	Todo.findById(req.params.todoId, function (err, todo) {
+	  if (err) {
+	  	return res.json(err);
+	  }
+	  
+	  if(todo===null){
+	  	return res.json({
+	  		message: "már nem létezik a todo"
+	  	})
+	  }
+	  
+	  if(req.body.title){
+	  	todo.title = req.body.title;
+	  }
+
+	  if(req.body.completed){
+	  	todo.completed = req.body.completed;
+	  }
+	  
+	  todo.save(function (err, todo) {
+	    if (err) {
+	  		return res.json(err);
+	  	}
+	  	res.json(todo);
+	  });
+	});
+});
+
 //app listener
 app.listen(3000, function () {
   console.log('Listening on port 3000!');
