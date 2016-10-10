@@ -1,7 +1,11 @@
 var express = require('express');
 var User = require('../models/user');
+var jwt = require('jsonwebtoken');
 
 var router = express.Router();
+
+
+var secret = "fdnaskfkr4554t3tv543v";
 
 // register
 router.post('/signup', function(req, res){
@@ -68,8 +72,19 @@ router.post('/login', function(req, res){
 	  	});
 	  }
 
+	  var payload = {
+	  	_id: user._id,
+	  	name: user.name,
+	  	regDate: user.created_at
+	  };
+
+	  var token = jwt.sign(payload, secret, {
+	  	expiresIn: '1d'
+	  });
+
 	  res.json({
-	  	message: "login success!"
+	  	token: token,
+	  	payload: payload
 	  })
 	});
 });

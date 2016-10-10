@@ -12,6 +12,9 @@ var User = mongoose.model('User', {
 		type: String,
 		required: true
 	},
+	name: {
+		type: String,
+	},
 	created_at: {
 		type: Date,
 		default: Date.now
