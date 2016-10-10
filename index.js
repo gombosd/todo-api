@@ -11,14 +11,15 @@ mongoose.connect('mongodb://localhost/todo-api');
 
 //express middleware
 app.use(bodyParser.json());
+app.use(express.static('public'));
 
 // todos routes
 var secret = require('./config').secret;
-app.use('/todos', expressJwt({secret: secret}), todoRouter);
+app.use('/api/todos', expressJwt({secret: secret}), todoRouter);
 
 
 // auth routes
-app.use('/auth', authRouter);
+app.use('/api/auth', authRouter);
 
 
 app.use(function(err, req, res, next){
