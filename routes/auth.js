@@ -5,7 +5,7 @@ var jwt = require('jsonwebtoken');
 var router = express.Router();
 
 
-var secret = "fdnaskfkr4554t3tv543v";
+var secret = require('../config').secret;
 
 // register
 router.post('/signup', function(req, res){
