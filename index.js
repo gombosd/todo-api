@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var todoRouter = require('./routes/todo');
+var authRouter = require('./routes/auth');
 
 //mongoose
 var mongoose = require('mongoose');
@@ -12,6 +13,9 @@ app.use(bodyParser.json());
 
 // todos routes
 app.use('/todos', todoRouter);
+
+// auth routes
+app.use('/auth', authRouter);
 
 //bad map
 app.get('/*',function(req, res){
