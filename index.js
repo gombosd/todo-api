@@ -26,7 +26,7 @@ app.use(function(err, req, res, next){
 })
 
 //bad map
-app.get('/*',function(req, res){
+app.use('/*',function(req, res){
 	res.send("Page not found")
 });
 

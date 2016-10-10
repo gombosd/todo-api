@@ -38,14 +38,32 @@ router.get('/', function(req, res){
 
 //del Todo
 router.delete('/:todoId', function(req, res){
-	Todo.remove({_id: req.params.todoId, owner: req.user._id}, function(err){
-		if(err){
-			return res.json(err);
-		}
-		res.json({
-			message: "todo removed"
-		})
+	Todo.findById(req.params.todoId, function (err, todo) {
+		if (err) {
+	  		return res.json(err);
+	  	}
+	  
+	  	if(todo===null){
+	  		return res.json({
+	  			message: "már nem létezik a todo"
+	  		})
+	  	}
 
+		if (req.user._id !== todo.owner) {
+		  	return res.json({
+		  		message: "Nem a tied a törölni kívánt todo"
+		  	})
+	  	}	
+
+	  	todo.remove(function(err){
+	  		if (err) {
+	  			return res.json(err);
+	  		}
+
+	  		res.json({
+					message: "todo removed"
+				})
+	  	})
 	});
 });
 
@@ -97,7 +115,7 @@ router.get('/:todoId', function(req, res){
 	  		message: "már nem létezik a todo"
 	  	});
 	  }
-	  
+
 	  if (req.user._id !== todo.owner) {
 	  	return res.json({
 	  		message: "Nem a tied a lekért todo"
