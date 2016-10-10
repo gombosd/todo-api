@@ -12,6 +12,10 @@ var Todo = mongoose.model('Todo', {
 	created_at: {
 		type: Date,
 		default: Date.now
+	},
+	owner: {
+		type: String,
+		required: true
 	} 
 });
 

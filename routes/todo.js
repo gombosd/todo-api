@@ -12,7 +12,8 @@ router.post('/',function(req, res){
 	}
 
 	var todo = new Todo({
-		title: req.body.title
+		title: req.body.title,
+		owner: req.user._id
 	})
 
 	todo.save(function (err) {
@@ -26,7 +27,7 @@ router.post('/',function(req, res){
 
 //list Todo
 router.get('/', function(req, res){
-	Todo.find({}, function(err, todos){
+	Todo.find({owner: req.user._id}, function(err, todos){
 		if(err){
 			return res.json(err);
 		}
@@ -37,7 +38,7 @@ router.get('/', function(req, res){
 
 //del Todo
 router.delete('/:todoId', function(req, res){
-	Todo.remove({_id: req.params.todoId}, function(err){
+	Todo.remove({_id: req.params.todoId, owner: req.user._id}, function(err){
 		if(err){
 			return res.json(err);
 		}
@@ -58,6 +59,12 @@ router.put('/:todoId', function(req, res){
 	  if(todo===null){
 	  	return res.json({
 	  		message: "már nem létezik a todo"
+	  	})
+	  }
+
+	  if (req.user._id !== todo.owner) {
+	  	return res.json({
+	  		message: "Nem a tied a modosítani kívánt todo"
 	  	})
 	  }
 
@@ -84,10 +91,17 @@ router.get('/:todoId', function(req, res){
 	  if (err) {
 	  	return res.json(err);
 	  }
+
 	  if(todo===null){
 	  	return res.json({
 	  		message: "már nem létezik a todo"
 	  	});
+	  }
+	  
+	  if (req.user._id !== todo.owner) {
+	  	return res.json({
+	  		message: "Nem a tied a lekért todo"
+	  	})
 	  }
 	  res.json(todo);
 	});
