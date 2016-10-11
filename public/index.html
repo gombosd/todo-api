@@ -1,1 +1,33 @@
-<h1>lod fs</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<title>What to do</title>
+	<link rel="shortcut icon" type="image/x-icon" href="img/favico.jpg" />	
+
+	<script type="text/javascript" src="js/vendor/angular.min.js"></script>
+	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script src="https://code.angularjs.org/1.2.28/angular-route.min.js"></script>
+
+	<!-- fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Baloo+Bhai" rel="stylesheet">
+	
+</head>
+<body ng-app='Todo' ng-controller="HomeController">
+
+
+		<div class='view' ng-view></div>
+
+		<!-- Modules -->
+		<script type="text/javascript" src="js/app.js"></script>
+		 
+		<!-- Controllers -->
+		<script type="text/javascript" src="js/controllers/HomeController.js"></script>
+		 
+		<!-- Services -->
+		<script type="text/javascript" src="js/services/todolist.js"></script>
+
+		<script src="https://s3.amazonaws.com/codecademy-content/projects/jquery.min.js"></script>
+</body>
+</html>

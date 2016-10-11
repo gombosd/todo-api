@@ -1,0 +1,106 @@
+body {
+	background-color: #1E90FF;
+}
+
+.start {
+	font-family:  'Baloo Bhai', cursive;
+	width: 70%;
+	margin: auto;
+	margin-top: 70px;
+}
+
+#fh3 {
+	margin-top: 13%;
+	font-size: 40px;
+	text-align: center;
+}
+
+#sh3 {
+	margin-top: 10%;
+	font-size: 55px;
+	text-align: center;
+}
+
+.mimg {
+	position: relative;
+	width: 100%
+}
+
+.mbuttons {
+	text-align: center;
+	margin-top: 7%;
+}
+
+.mbuttons button {
+	font-size: 30px;
+}
+
+.ra {
+	color: red;
+}
+
+.htodotitle {
+	margin: auto;
+	margin-bottom: 20px;
+	width: 70%;
+	height: 60px;
+	background-color: rgba(255, 239, 213, 0.6);
+	font-size: 30px;
+	color: #32CD32;
+	padding-top: 10px;
+	padding-left: 20px;
+}
+
+.start nav {
+	width: 14%;
+	font-size: 20px;
+}
+
+.start nav a{
+	color: #FFD700;
+}
+
+.plustodo {
+	text-align: center;
+}
+
+.plustodo input {
+	border-radius: 30px;
+	font-size: 30px;
+	opacity: 0.7;
+}
+
+.plustodo input:first-child {
+	padding-left: 20px;
+}
+
+#suh1 {
+	text-align: center;
+	font-size: 50px;
+}
+
+#suh3 {
+	margin-top: 40px; 
+	font-size: 30px;
+	margin-bottom: 25px;
+}
+
+.suform p {
+	font-size: 17px;
+	margin-top: 7px; 
+}
+
+.suform input {
+	font-size: 13px;
+	margin-bottom: 7px;
+	border-radius: 20px;
+	width: 40%;	
+	height: 35px;
+	padding-left: 10px; 
+}
+
+#susubu {
+	width: 15%;
+	float: right; 
+	padding-left: 0px;
+}
