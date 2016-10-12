@@ -1,7 +1,6 @@
-app.controller('HomeController', [ 'todolist', '$scope', function( todolist, $scope){
+app.controller('HomeController', ['$scope', function($scope){
 	$scope.ptodo = ""
 	$scope.todos = []
-	$scope.todos.push(todolist())
 	var token = ""
 
 	$scope.plustodo = function(){

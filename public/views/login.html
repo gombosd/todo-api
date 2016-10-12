@@ -1,10 +1,10 @@
 <div class="start">
   <h1 id="suh1"> Wellcome back! </h1>
-  <form class="suform">
+  <form ng-submit="login()" class="suform">
 	  <p>Email adress:</p>
-	  <input type="text" name="email"><br>
+	  <input type="text" ng-model="email" name="email"><br>
 	  <p>Password:</p>
-	  <input type="password" name="firstname"><br>
+	  <input type="password" ng-model="password" name="password"><br>
 	  <input id="susubu" type="submit" value="Log in">
 	</form>
 </div>

@@ -7,7 +7,7 @@ app.config(function ($routeProvider) {
       templateUrl: 'views/start.html' 
     })
     .when('/login', { 
-      controller: 'HomeController', 
+      controller: 'LoginController', 
       templateUrl: 'views/login.html' 
     })
     .when('/signup', { 
