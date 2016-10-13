@@ -1,21 +1,25 @@
-app.controller('LoginController', ['login', '$scope', function(login, $scope){
-	$scope.password = ""
-	var token = ""
-
+app.controller('LoginController', ['api', '$scope', '$window', function(api, $scope, $window){
+	var resp = {}
 	$scope.login = function(){
 		if ($scope.email && $scope.password) {
-			login({
+			api('POST', 'auth/login', {
 				email: this.email,
 				password: this.password
-			}, function(data){
-				$scope.resp = data;
+			}, $scope.token, function(err, data){
+				resp = data;
+				console.log(resp)
+				if (resp.token) {
+					localStorage.setItem('token', resp.token);
+					localStorage.setItem('name', resp.payload.name);
+					$window.location.href = '#/home';
+				}
+				else {
+					$scope.message = resp.message;
+				}								
 			})
 
 			$scope.password = ""
-			$scope.email = ""
-
-			console.log('lol1')
-			console.log($scope.message)
+			$scope.email = ""			
 		}
 	}
 }]);

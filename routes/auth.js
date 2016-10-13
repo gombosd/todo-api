@@ -23,7 +23,8 @@ router.post('/signup', function(req, res){
 
 	var user = new User({
 		email: req.body.email,
-		password: req.body.password
+		password: req.body.password,
+		name: req.body.name
 	})
 
 	user.save(function (err) {
