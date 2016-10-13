@@ -21,5 +21,10 @@ app.controller('LoginController', ['api', '$scope', '$window', function(api, $sc
 			$scope.password = ""
 			$scope.email = ""			
 		}
+		else {
+			$scope.message = "Please fill both field!"
+			$scope.password = ""
+			$scope.email = ""
+		}
 	}
 }]);
