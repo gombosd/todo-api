@@ -1,11 +1,12 @@
 app.controller('HomeController', ['api', '$window','$scope', function(api, $window, $scope){
 	$scope.ptodo = ""
-	$scope.todos = []
+	$scope.todos = []	
+	$scope.token = localStorage.getItem('token')
+
 	$scope.name = ''
 	if (localStorage.getItem('name')) {
 		$scope.name = localStorage.getItem('name')
-	}	
-	$scope.token = localStorage.getItem('token')
+	}
 
 	var gettodos = function(){
 		api('GET', 'todos', '', $scope.token, function(err, data){
@@ -14,7 +15,6 @@ app.controller('HomeController', ['api', '$window','$scope', function(api, $wind
 		});
 	}
 
-
 	if (!$scope.token) {
 		return $window.location.href = '#/'
 	}
@@ -22,7 +22,6 @@ app.controller('HomeController', ['api', '$window','$scope', function(api, $wind
 		$window.location.href = '#/home'
 		gettodos()
 	}
-
 
 	$scope.plustodo = function(){
 		console.log($scope.todos)

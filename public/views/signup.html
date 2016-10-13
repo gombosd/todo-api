@@ -1,15 +1,15 @@
 <div class="start">
   <h1 id="suh1"> We are happy to see you here! </h1>
   <h3 id="suh3"> Please provide us the following informations! </h3>
-  <form class="suform">
+  <form ng-submit="signup()" class="suform">
 	  <p>Email adress:</p>
-	  <input type="text" name="email"><br>
+	  <input type="text" ng-model="email" name="email"><br>
 	  <p>Name:</p>
-	  <input type="text" name="lastname"><br>
+	  <input type="text" ng-model="name" name="name"><br>
 	  <p>Password:</p>
-	  <input type="password" name="firstname"><br>
+	  <input type="password" ng-model="password" name="password"><br>
 	  <p>Password again:</p>
-	  <input type="password" name="firstname"><br>
+	  <input type="password" ng-model="repassword" name="repassword"><br>
 	  <input id="susubu" type="submit" value="Sign Up">
 	</form>
 </div>
