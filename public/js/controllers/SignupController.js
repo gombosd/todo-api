@@ -32,6 +32,8 @@ app.controller('SignupController', ['api', '$scope', '$window', function(api, $s
 
 						$scope.password = ""
 						$scope.email = ""
+						$scope.repassword = ""
+						$scope.name = ""
 						$window.location.href = '#/login'
 					}
 					else {
