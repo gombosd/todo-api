@@ -1,12 +1,17 @@
 <div class="start">
-	<h1>Nice to have you back {{name}}!</h1>
+	<h1>Nice to have you back {{ name }}!</h1>
 	<h3>Here is what you have to do:</h3>
-	<div ng-repeat="todo in todos">
-		<p class="htodotitle">{{todo.title}}</p>
+	<div ng-repeat="todo in todos" class="dafq">
+		<p class="htodotitle">{{todo.title}}
+			<img ng-click="del($index)" class="gbutton" src="https://openclipart.org/image/2400px/svg_to_png/226230/trash.png">
+			<img ng-click="done()" class="gbutton" src="http://www.freeiconspng.com/uploads/black-tick-icon-26.png">
+		</p>
 	</div>
 
 	<form ng-submit="plustodo()" class="plustodo">
 	  <input type="text" ng-model="ptodo" name="ptodo" />
 	  <input type="submit" id="submit" value="+" />
 	</form>
+
+	<h4 id="otherlogin"><a href="#/login">Login with another account</a></h4>
 </div>

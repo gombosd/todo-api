@@ -28,9 +28,28 @@ app.controller('HomeController', ['api', '$window','$scope', function(api, $wind
 				title: this.ptodo
 			}, $scope.token, function(err, data){
 				console.log(data)
+				api('GET', 'todos', '', $scope.token, function(err, data){
+					$scope.todos = data;
+				});
 			});
 
 			$scope.ptodo = ""
 		}
+	}
+
+	$scope.del = function($index){
+		var id = $scope.todos[$index]._id
+		console.log($index)
+		console.log(id)
+
+		api('DELETE', 'todos/' + id, {
+				title: this.ptodo
+			}, $scope.token, function(err, data){
+				delete $scope.todos[$index];
+				api('GET', 'todos', '', $scope.token, function(err, data){
+					$scope.todos = data;
+				});
+				console.log(data)
+		});
 	}
 }]);

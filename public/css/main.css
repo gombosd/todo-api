@@ -45,7 +45,7 @@ body {
 	width: 70%;
 	height: 60px;
 	background-color: rgba(255, 239, 213, 0.6);
-	font-size: 30px;
+	font-size: 230%;
 	color: #32CD32;
 	padding-top: 10px;
 	padding-left: 20px;
@@ -103,4 +103,22 @@ body {
 	width: 15%;
 	float: right; 
 	padding-left: 0px;
+}
+
+#otherlogin {
+	margin-top: 12%;
+}
+
+#otherlogin a{
+	color: black;
+	opacity: 0.666;
+}
+
+.gbutton {
+	height: 80%;
+	float: right;
+	width: 4%;
+	background-color: rgba(255, 239, 213);
+	margin-right: 2%;
+	cursor: pointer;
 }
