@@ -98,4 +98,8 @@ app.controller('HomeController', ['api', '$window','$scope', function(api, $wind
 				console.log(data)
 		});
 	}
+
+	$scope.logout = function() {
+		localStorage.removeItem('token');
+	}
 }]);

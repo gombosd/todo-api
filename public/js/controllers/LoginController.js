@@ -7,7 +7,6 @@ app.controller('LoginController', ['api', '$scope', '$window', function(api, $sc
 				password: this.password
 			}, $scope.token, function(err, data){
 				resp = data;
-				console.log(resp)
 				if (resp.token) {
 					localStorage.setItem('token', resp.token);
 					localStorage.setItem('name', resp.payload.name);
