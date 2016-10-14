@@ -1,10 +1,17 @@
 <div class="start">
 	<h1>Nice to have you back {{ name }}!</h1>
 	<h3>Here is what you have to do:</h3>
-	<div ng-repeat="todo in todos" class="dafq">
-		<p class="htodotitle">{{todo.title}}
-			<img ng-click="del($index)" class="gbutton" src="https://openclipart.org/image/2400px/svg_to_png/226230/trash.png">
-			<img ng-click="done()" class="gbutton" src="http://www.freeiconspng.com/uploads/black-tick-icon-26.png">
+	<div ng-repeat="todo in needtodos">
+		<p class="htodotitle"> {{todo.title}}
+			<img ng-click="needdel($index)" class="gbutton" src="https://openclipart.org/image/2400px/svg_to_png/226230/trash.png">
+			<img ng-click="needdone($index)" class="gbutton" src="http://www.freeiconspng.com/uploads/black-tick-icon-26.png">
+		</p>
+	</div>
+
+	<h3>Here is what you already done: </h3>
+	<div ng-repeat="todo in donetodos">
+		<p class="htodotitle"> {{todo.title}}
+			<img ng-click="donedel($index)" class="gbutton" src="https://openclipart.org/image/2400px/svg_to_png/226230/trash.png">
 		</p>
 	</div>
 

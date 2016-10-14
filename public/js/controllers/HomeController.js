@@ -1,12 +1,30 @@
 app.controller('HomeController', ['api', '$window','$scope', function(api, $window, $scope){
 	$scope.ptodo = ""
-	$scope.todos = []	
+	$scope.todos = []
+	$scope.needtodos = []	
+	$scope.donetodos = []	
 	$scope.token = localStorage.getItem('token')
 	$scope.name = localStorage.getItem('name')
+
+	var sort = function(){
+		if ($scope.todos.length > 0) {
+			for (var i = $scope.todos.length - 1; i >= 0; i--) {
+				if ($scope.todos[i].completed) {
+					$scope.donetodos.push($scope.todos[i]);
+				}
+				else {
+					$scope.needtodos.push($scope.todos[i]);
+				}
+			}
+		}
+	}
 
 	var gettodos = function(){
 		api('GET', 'todos', '', $scope.token, function(err, data){
 			$scope.todos = data;
+			$scope.needtodos = []	
+			$scope.donetodos = []
+			sort();
 		});
 	}
 
@@ -15,7 +33,7 @@ app.controller('HomeController', ['api', '$window','$scope', function(api, $wind
 	}
 	else {
 		$window.location.href = '#/home'
-		gettodos()
+		gettodos();
 	}
 
 	$scope.plustodo = function(){
@@ -28,27 +46,55 @@ app.controller('HomeController', ['api', '$window','$scope', function(api, $wind
 				title: this.ptodo
 			}, $scope.token, function(err, data){
 				console.log(data)
-				api('GET', 'todos', '', $scope.token, function(err, data){
-					$scope.todos = data;
-				});
+				gettodos();
 			});
 
 			$scope.ptodo = ""
 		}
 	}
 
-	$scope.del = function($index){
-		var id = $scope.todos[$index]._id
-		console.log($index)
-		console.log(id)
+	$scope.needdel = function($index){
+		var id = $scope.needtodos[$index]._id
 
 		api('DELETE', 'todos/' + id, {
 				title: this.ptodo
 			}, $scope.token, function(err, data){
 				delete $scope.todos[$index];
-				api('GET', 'todos', '', $scope.token, function(err, data){
-					$scope.todos = data;
-				});
+				gettodos();
+				console.log(data)
+		});
+	}
+
+	$scope.needdone = function($index){
+		var id = $scope.needtodos[$index]._id
+
+		api('PUT', 'todos/' + id, {
+				completed: true
+			}, $scope.token, function(err, data){
+				gettodos();
+				console.log(data)
+		});
+	}
+
+	$scope.donedel = function($index){
+		var id = $scope.donetodos[$index]._id
+
+		api('DELETE', 'todos/' + id, {
+				title: this.ptodo
+			}, $scope.token, function(err, data){
+				delete $scope.todos[$index];
+				gettodos();
+				console.log(data)
+		});
+	}
+
+	$scope.donedone = function($index){
+		var id = $scope.donetodos[$index]._id
+
+		api('PUT', 'todos/' + id, {
+				completed: true
+			}, $scope.token, function(err, data){
+				gettodos();
 				console.log(data)
 		});
 	}
